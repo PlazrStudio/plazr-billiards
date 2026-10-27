@@ -1,0 +1,19 @@
+# Rust / Cargo build artifacts
+/target/
+Cargo.lock
+
+# WebAssembly & JS packaging output (future phases)
+/pkg/
+/dist/
+/node_modules/
+
+# IDE & Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS metadata
+.DS_Store
+Thumbs.db
