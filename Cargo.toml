@@ -23,8 +23,6 @@ include = [
     "benches/**/*",
     "tests/**/*",
 ]
-# Kept `false` until final pre-release verification and owner sign-off.
-publish = false
 
 [lib]
 name = "plazr_billiards"
