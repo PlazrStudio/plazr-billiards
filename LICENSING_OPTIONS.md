@@ -1,19 +1,22 @@
-# Open-Source Licensing Options for Plazr Billiards
+# Open-Source Licensing Configuration for Plazr Billiards
 
-In accordance with the Phase 1 specification, **no final license has been automatically selected or applied** (`Cargo.toml` leaves the `license` field unset and `publish = false` until you confirm your choice).
+The proposed license configuration for `plazr-billiards` is the standard Rust ecosystem dual license:
 
-Below is a concise comparison of the standard open-source licensing options recommended for a Rust + WebAssembly library in the Plazr ecosystem:
+- **SPDX Identifier**: `MIT OR Apache-2.0`
+- **Publisher / Project Attribution**: `Plazr Studio`
+- **Included License Texts**:
+  - [`LICENSE-MIT`](./LICENSE-MIT)
+  - [`LICENSE-APACHE`](./LICENSE-APACHE)
 
-| License Option | SPDX Identifier | Key Characteristics | Best Suited When |
+## Current Pre-Release Status
+
+`Cargo.toml` is configured with `license = "MIT OR Apache-2.0"` and `publish = false`. Final public release under this license remains subject to explicit approval by the project owner prior to setting `publish = true` or publishing to `crates.io`.
+
+## Summary of Candidate Options
+
+| License Option | SPDX Identifier | Key Characteristics | Status |
 | :--- | :--- | :--- | :--- |
-| **Dual MIT OR Apache-2.0** *(Rust Ecosystem Standard)* | `MIT OR Apache-2.0` | Permissive adoption like MIT, combined with Apache 2.0's explicit patent grant and contributor patent retaliation clauses. | You want maximum compatibility with the Rust ecosystem (`crates.io` convention) while protecting Plazr against patent litigation from contributors/users. |
-| **MIT License** | `MIT` | Short, permissive license allowing commercial and closed-source use with minimal attribution requirements. | You want the simplest possible permissive license with zero friction for JavaScript/TypeScript and WebAssembly consumers. |
-| **Apache License 2.0** | `Apache-2.0` | Permissive license with explicit patent protection and clear requirements for documenting modifications. | You want strong corporate/patent protection in a single license file. |
-| **Mozilla Public License 2.0** *(File-Level Copyleft)* | `MPL-2.0` | Weak copyleft: modifications to `plazr-billiards` source files must remain open-source, but the library can be linked into proprietary games or commercial platforms (including Plazr) without open-sourcing the host application. | You want to ensure community improvements to the physics engine itself are shared back, while still allowing proprietary games (including Plazr) to embed the library cleanly. |
-
-## How to Finalize Your Choice
-
-Once you select a license:
-1. Add `license = "<SPDX-Identifier>"` to `Cargo.toml`.
-2. Add the corresponding `LICENSE` (or `LICENSE-MIT` and `LICENSE-APACHE`) file(s) to the repository root.
-3. Update the Licensing section in `README.md`.
+| **Dual MIT OR Apache-2.0** *(Rust Ecosystem Standard)* | `MIT OR Apache-2.0` | Permissive adoption like MIT, combined with Apache 2.0's explicit patent grant and contributor patent retaliation clauses. | **Prepared in repository** (`LICENSE-MIT` + `LICENSE-APACHE`), pending owner final sign-off before public release. |
+| **MIT License** | `MIT` | Short, permissive license allowing commercial and closed-source use with minimal attribution requirements. | Covered as the first option of the dual license. |
+| **Apache License 2.0** | `Apache-2.0` | Permissive license with explicit patent protection and clear requirements for documenting modifications. | Covered as the second option of the dual license. |
+| **Mozilla Public License 2.0** *(File-Level Copyleft)* | `MPL-2.0` | Weak copyleft: modifications to `plazr-billiards` source files must remain open-source, while allowing linking into proprietary applications. | Alternative option if file-level copyleft is preferred before release. |

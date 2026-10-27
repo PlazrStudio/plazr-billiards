@@ -1,64 +1,83 @@
 # Plazr Billiards
 
-A Rust library for billiards physics, developed by [Plazr Studio](https://plazr.net).
+A billiards physics library written in Rust.
+Built at Plazr Studio.
 
-We're building a physics engine that developers can use without bringing along an entire game. The goal is to keep the simulation separate from graphics, networking, and any particular game framework.
+This project handles the physics side of billiards: moving balls, detecting collisions, cushion rebounds, and pockets.
 
-**This project is still in its early stages.** The current code sets up the library's structure and data types. It doesn't simulate ball movement or collisions yet.
+There’s no renderer or game UI included. You can bring your own.
 
-## Why this project exists
+## Current state
 
-Plazr Billiards started as a way to explore billiards physics in a standalone, reusable library. It's a separate project, built independently of the commercial Plazr game engine.
+The core simulation is working, but it’s still early.
 
-We're starting with Rust and plan to add WebAssembly support so the same simulation can eventually be used from JavaScript and TypeScript. There's no browser integration yet.
+Here’s what’s implemented so far:
 
-## What's here today
+* 2D ball movement with fixed time steps
+* Ball-to-ball and cushion collisions
+* Continuous collision detection (CCD)
+* Handling of simultaneous ball contacts
+* Basic friction and stopping behavior
+* Simplified pockets and table geometry
+* Tests for momentum, kinetic energy, and collision edge cases
 
-The first version lays out the pieces we'll build on:
+The engine runs independently of any browser or game framework.
 
-- `math` — basic 2D and 3D vector types.
-- `ball` — ball identity, physical properties, position, and velocity data.
-- `table` — table dimensions and pocket definitions.
-- `collision` — types for describing contact events.
-- `simulation` — configuration and a container for the table and balls.
-- `wasm_api` — a place for future WebAssembly bindings.
+## Getting started
 
-These modules define the data model. The physics algorithms still need to be written and tested.
-
-## What's next
-
-We're working toward these milestones, roughly in this order:
-
-1. Vector operations and basic geometry.
-2. Time-stepped ball movement.
-3. Ball-to-ball and ball-to-cushion collisions.
-4. Friction, rolling, sliding, and spin.
-5. Tests for numerical stability and repeatable results.
-6. WebAssembly bindings and a small browser example.
-
-The order may change as we learn more. We'd rather ship something correct and understandable than rush to a feature checklist.
-
-## Building from source
-
-You'll need Rust 1.75 or newer. From the repository root, run:
+Clone the repository:
 
 ```bash
-cargo check
-cargo build
-cargo test
-cargo fmt --check
+git clone https://github.com/PlazrStudio/plazr-billiards.git
+cd plazr-billiards
 ```
 
-At this stage, `cargo test` does not exercise a working physics engine. Simulation tests will be added alongside the features they cover.
+Run the tests:
+
+```bash
+cargo test
+```
+
+Or try one of the examples:
+
+```bash
+cargo run --example basic_shot
+cargo run --example newtons_cradle
+cargo run --example sixteen_ball_break
+```
+
+That’s enough to see what the engine currently does.
+
+## Things we’re still working on
+
+The physics isn’t finished.
+
+Spin and cloth interaction are still simplified. Pocket geometry could use more work, particularly around the jaws.
+
+There’s also no working JavaScript or WebAssembly API yet. That’s planned, but we’re focusing on getting the Rust side right first.
+
+The simulation has automated tests, but passing those tests doesn’t mean every possible collision is physically accurate.
+
+## Why build this?
+
+We wanted a billiards simulation that could be developed and tested without tying it to a particular game.
+
+Keeping the physics separate makes it easier to experiment, measure behavior, and fix things without dealing with rendering or networking code.
+
+It’s also a good excuse to spend too much time figuring out why three balls won’t collide properly.
 
 ## Contributing
 
-Feedback on the design, data types, and planned API is welcome. The project is young, so public interfaces may change as the simulation takes shape. If you'd like to make a larger contribution, please discuss the approach in an issue first.
+Issues and pull requests are welcome.
+
+If you find a physics bug, please include the initial ball positions, velocities, and the result you expected.
+
+A small reproducible example is much more useful than a screenshot of a ball doing something weird.
 
 ## License
 
-A license hasn't been selected yet. Until a license is added, please don't assume the code is available for reuse or redistribution. We're reviewing the options in [LICENSING_OPTIONS.md](LICENSING_OPTIONS.md) before the public release.
+The repository currently includes MIT and Apache-2.0 license files. Publishing to crates.io is not enabled yet.
 
 ---
 
-Made at **Plazr Studio** · [plazr.net](https://plazr.net)
+Plazr Studio · plazr.net

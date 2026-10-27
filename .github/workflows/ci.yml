@@ -1,0 +1,45 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check-and-test:
+    name: Format, Check, Clippy, Test, Examples & Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install stable Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      - name: Type-check all targets
+        run: cargo check --all-targets
+
+      - name: Run Clippy lints
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Run unit, integration, and physics validation tests
+        run: cargo test --all-targets
+
+      - name: Run doc tests
+        run: cargo test --doc
+
+      - name: Build and run examples & benchmark suite
+        run: |
+          cargo build --release
+          cargo run --example basic_shot
+          cargo run --example newtons_cradle
+          cargo run --example sixteen_ball_break
+          cargo bench --bench simulation_bench

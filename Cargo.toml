@@ -3,11 +3,27 @@ name = "plazr-billiards"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.75"
-description = "Open-source, modular 2D/3D billiards physics simulation engine by the Plazr platform."
+authors = ["Plazr Studio"]
+description = "Open-source, modular 2D/3D billiards physics simulation engine by Plazr Studio."
+documentation = "https://docs.rs/plazr-billiards"
 readme = "README.md"
-repository = "https://github.com/plazr/plazr-billiards"
+homepage = "https://github.com/PlazrStudio/plazr-billiards"
+repository = "https://github.com/PlazrStudio/plazr-billiards"
+license = "MIT OR Apache-2.0"
 keywords = ["billiards", "pool", "physics", "simulation", "wasm"]
 categories = ["simulation", "game-development", "science", "wasm"]
+include = [
+    "Cargo.toml",
+    "README.md",
+    "LICENSING_OPTIONS.md",
+    "LICENSE-MIT",
+    "LICENSE-APACHE",
+    "src/**/*",
+    "examples/**/*",
+    "benches/**/*",
+    "tests/**/*",
+]
+# Kept `false` until final pre-release verification and owner sign-off.
 publish = false
 
 [lib]
@@ -17,10 +33,14 @@ path = "src/lib.rs"
 # for future WebAssembly compilation targets (`wasm32-unknown-unknown`).
 crate-type = ["rlib", "cdylib"]
 
+[[bench]]
+name = "simulation_bench"
+harness = false
+
 [features]
 default = []
-# Reserved feature flag for Phase 2+ WebAssembly bindings (e.g., wasm-bindgen integration).
+# Reserved feature flag for future WebAssembly bindings (e.g., wasm-bindgen integration).
 wasm = []
 
 [dependencies]
-# Phase 1 strictly keeps zero external dependencies to preserve core independence.
+# Zero external dependencies to preserve core independence and portability.
