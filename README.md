@@ -76,7 +76,7 @@ A small reproducible example is much more useful than a screenshot of a ball doi
 
 ## License
 
-The repository currently includes MIT and Apache-2.0 license files. Publishing to crates.io is not enabled yet.
+The repository includes MIT and Apache-2.0 license files. The library is published on [crates.io/crates/plazr-billiards](https://crates.io/crates/plazr-billiards).
 
 ---
 

@@ -15,7 +15,6 @@ categories = ["simulation", "game-development", "science", "wasm"]
 include = [
     "Cargo.toml",
     "README.md",
-    "LICENSING_OPTIONS.md",
     "LICENSE-MIT",
     "LICENSE-APACHE",
     "src/**/*",
